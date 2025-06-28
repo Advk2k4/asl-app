@@ -7,3 +7,4 @@ mediapipe==0.10.9
 tqdm==4.66.4
 Pillow==10.3.0
 joblib==1.4.2
+Cython==0.29.36
