@@ -1,10 +1,10 @@
 services:
   - type: web
-    name: asl-streamlit-app
+    name: asl-app
     env: python
-    plan: free
     buildCommand: pip install -r requirements.txt
-    startCommand: streamlit run app.py --server.port $PORT
+    startCommand: streamlit run app.py
+    plan: free
     envVars:
-      - key: PYTHON_VERSION
-        value: 3.10.8
+      - key: PORT
+        value: 8501
