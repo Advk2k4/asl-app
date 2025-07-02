@@ -7,3 +7,4 @@ Pillow==10.3.0
 joblib==1.4.2
 mediapipe==0.10.15
 streamlit-webrtc==0.45.2
+scikit-learn==1.4.2
