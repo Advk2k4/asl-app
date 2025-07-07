@@ -3,7 +3,19 @@ import cv2
 import numpy as np
 import mediapipe as mp
 import joblib
-from streamlit_webrtc import webrtc_streamer, VideoTransformerBase
+from streamlit_webrtc import webrtc_streamer, VideoTransformerBase, RTCConfiguration
+
+# Add STUN/TURN server config
+rtc_config = RTCConfiguration({
+    "iceServers": [
+        {"urls": ["stun:stun.l.google.com:19302"]},
+        {
+            "urls": ["turn:openrelay.metered.ca:80", "turn:openrelay.metered.ca:443"],
+            "username": "openrelayproject",
+            "credential": "openrelayproject"
+        }
+    ]
+})
 
 st.set_page_config(page_title="ASL Sign Recognizer", layout="centered")
 st.title("🧠 Real-Time American Sign Language Letter Recognition")
@@ -41,4 +53,9 @@ class ASLRecognizer(VideoTransformerBase):
 
         return img
 
-webrtc_streamer(key="asl", video_transformer_factory=ASLRecognizer)
+# Updated streamer with config
+webrtc_streamer(
+    key="asl",
+    rtc_configuration=rtc_config,
+    video_transformer_factory=ASLRecognizer
+)
