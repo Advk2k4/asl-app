@@ -5,3 +5,4 @@ numpy
 joblib
 streamlit-webrtc
 scikit-learn
+aiortc==1.5.0
