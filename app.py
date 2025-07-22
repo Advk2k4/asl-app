@@ -42,6 +42,7 @@ class ASLRecognizer(VideoProcessorBase):
 webrtc_streamer(
     key="asl",
     video_processor_factory=ASLRecognizer,
+    async_processing=True,
     rtc_configuration={
         "iceServers": [
             {"urls": ["stun:stun.l.google.com:19302"]},
@@ -55,5 +56,8 @@ webrtc_streamer(
             }
         ]
     },
-    async_processing=True
+    media_stream_constraints={
+        "video": True,
+        "audio": False
+    }
 )
