@@ -3,21 +3,18 @@ import cv2
 import numpy as np
 import mediapipe as mp
 import joblib
-from streamlit_webrtc import webrtc_streamer, VideoTransformerBase
+from streamlit_webrtc import webrtc_streamer, VideoProcessorBase
 
 st.set_page_config(page_title="ASL Sign Recognizer", layout="centered")
 st.title("🧠 Real-Time American Sign Language Letter Recognition")
 st.markdown("Show an American Sign Language letter (A, B, C...) with your hand and the app will recognize it!")
 
-# Load trained KNN model from joblib file
-with open("asl_knn_model.joblib", "rb") as f:
-    model = joblib.load(f)
-
 mp_hands = mp.solutions.hands
 mp_drawing = mp.solutions.drawing_utils
 
-class ASLRecognizer(VideoTransformerBase):
+class ASLRecognizer(VideoProcessorBase):
     def __init__(self):
+        self.model = joblib.load("asl_knn_model.joblib")
         self.hands = mp_hands.Hands(max_num_hands=1, min_detection_confidence=0.7)
         self.prediction = ""
 
@@ -44,7 +41,7 @@ class ASLRecognizer(VideoTransformerBase):
 # Compatible RTC config for Streamlit Cloud
 webrtc_streamer(
     key="asl",
-    video_transformer_factory=ASLRecognizer,
+    video_processor_factory=ASLRecognizer,
     rtc_configuration={
         "iceServers": [
             {"urls": ["stun:stun.l.google.com:19302"]},
@@ -57,5 +54,6 @@ webrtc_streamer(
                 "credential": "openrelayproject"
             }
         ]
-    }
+    },
+    async_processing=True
 )
