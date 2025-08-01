@@ -1,0 +1,11 @@
+torch
+opencv-python
+mediapipe
+onnx
+onnxruntime
+streamlit
+streamlit-webrtc
+pandas
+numpy==1.26.4
+scikit-learn
+joblib
