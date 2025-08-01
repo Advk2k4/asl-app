@@ -1,9 +1,0 @@
-streamlit
-opencv-python
-mediapipe
-torch
-onnx
-onnxruntime
-scikit-learn
-pandas
-numpy
