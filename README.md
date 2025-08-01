@@ -7,8 +7,7 @@ This project is a webcam-based American Sign Language (ASL) recognition system b
 ## 🎥 Demo Video
 
 > _⬇️ Watch the full demo of the app in action here:_
-
-[![ASL Demo](https://img.shields.io/badge/Watch%20Demo-YouTube-red?logo=youtube)]([https://your-video-link-here.com](https://www.youtube.com/watch?v=_ZuMkJ-Eqhw&ab_channel=AadvikMishra))
+- https://www.youtube.com/watch?v=_ZuMkJ-Eqhw&ab_channel=AadvikMishra
 
 ---
 
